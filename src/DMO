@@ -1,0 +1,6 @@
+         MACRO
+&NAME    DMO
+* Data definition for MANONE macro
+         DS    2D     stash
+         DC    D'2.0' two
+         MEND

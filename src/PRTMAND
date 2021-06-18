@@ -1,0 +1,80 @@
+PRTMAND  START
+.* Prints the mandelbrot set
+.*
+         USING PRTMAND,15
+         SAVE  (14,12)
+         BALR  12,0
+         USING *,12
+         LA    2,SAVEAREA
+         ST    2,8(,13)
+         ST    13,SAVEAREA+4
+         LR    13,2
+         WTO   'Start prtmand'
+         OPEN  (PRINTER,(OUTPUT))
+         WTO   'X Init'
+         CRDINIT XTRAN      Initialize coordinate translation
+         WTO   'Y Init'
+         CRDINIT YTRAN
+         WTO   'Prtmand After Open'
+XLOOP    LD    0,YCRNT      Coordinate translate
+         CRDTRAN YTRAN
+         LDR   4,0
+         LD    0,XCRNT
+         CRDTRAN XTRAN
+         LDR   2,4    Setup inputs
+         L     4,MAXITER
+         MANDEL DMB            Calculate if in set
+         BE    NOPRINT
+         PUTC  PRTBUF,HASH,XCHAR
+         B     CONT
+NOPRINT  PUTC  PRTBUF,SPACE,XCHAR
+CONT     L     0,XCHAR
+         A     0,ONE
+         ST    0,XCHAR
+         BL    YNEXT
+         LD    0,XCRNT
+         AD    0,ONED
+         STD   0,XCRNT
+         B     XLOOP
+YNEXT    PUT   PRINTER,PRTBUF
+         L     0,ZERO
+         ST    0,XCHAR
+         LD    0,ZEROD
+         STD   0,XCRNT
+         LD    0,YCRNT
+         AD    0,ONED
+         STD   0,YCRNT
+         BL    DONE
+         B     XLOOP
+DONE     CLOSE (PRINTER)
+         RETURN (14,12),RC=0
+XTRAN    DC    D'0',D'120',D'-2',D'2'
+YTRAN    DC    D'0',D'90',D'-2',D'2'
+XCRNT    DC    D'0.0'
+YCRNT    DC    D'0.0'
+ONED     DC    D'1.0'
+ZEROD    DC    D'0.0'
+XCHAR    DS    PL4'0'
+ONE      DC    PL4'1'
+ZERO     DC    PL4'0'
+MAXITER  DC    PL4'100'
+SPACE    DC    C'    '
+HASH     DC    C'####'
+DMB      DMAND
+SAVEAREA DS    18F
+PRTBUF   DS    132C
+.* Original
+.* PRINT    DCB   DSORG=PS,MACRF=PM,DDNAME=SYSLOUT,RECFM=FM,LRECL=121
+.* Another try
+.* PRINT    DCB   DDNAME=SYSLOUT,DSORG=PS,MACRF=PM,LRECL=133,RECFM=FA,    x
+.*               BLKSIZE=133,BUFNO=1
+.* Simple QSAM
+PRINTER  DCB   DSORG=PS,                                               X
+               MACRF=(PM),                                             X
+               DEVD=DA,                                                X
+               DDNAME=SYSLOUT,                                         X
+               RECFM=FM,                                               X
+               LRECL=121
+.* Simple BSAM
+.* PRINT    DCB   DSORG=PS,MACRF=W,LRECL=133
+         END   PRTMAND

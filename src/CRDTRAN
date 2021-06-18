@@ -1,0 +1,16 @@
+         MACRO
+&NAME    CRDTRAN &BUF
+.* Perform 1D coordinate transform
+.*
+.* Input
+.* R0 - input coordinate
+.* &BUF - space initialized by CRDINIT
+.*
+.* Output
+.* R0 - output coordinate
+.*
+.* Registers
+.* 0
+         MD    0,&BUF+8         mx
+         AD    0,&BUF
+         MEND

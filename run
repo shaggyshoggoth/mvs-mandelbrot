@@ -1,0 +1,18 @@
+#!/bin/sh
+# Submit assemble and run job.
+
+cat src/MANJOB \
+    src/MANONE \
+    src/CLMAG \
+    src/MANDEL \
+    src/CRDINIT \
+    src/CRDTRAN \
+    src/PUTC \
+    src/DMO \
+    src/DMAND \
+    src/PRTMAND \
+    > job
+
+echo "/*" >> job
+echo -n "//" >> job
+nc -w1 localhost 3505 < job

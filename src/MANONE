@@ -1,0 +1,33 @@
+         MACRO
+&NAME    MANONE &DMB
+.* One iteration of the mandelbrot set
+.*
+.* zn+1 = zn^2 + c
+.*
+.* input:
+.* zn[real] in register 0
+.* zn[imag] in register 2
+.* c[real] in register 4
+.* c[imag] in register 6
+.* stash is memory region of size ??
+.*
+.* output:
+.* zn+1[real] in register 0
+.* zn+1[imag] in register 2
+.*
+         STD   4,&DMB     Store C
+         STD   6,&DMB+8
+         LDR   4,0          Copy z
+         LCDR  6,2
+         MDR   0,4          Real*Real
+         MDR   2,6          Imag*Imag
+         SDR   0,2          Real part zn
+         LDR   2,4          Real copy
+         MDR   2,6          Real*Imag
+         LD    4,&DMB+16    2*Real*Imag
+         MDR   2,4
+         LD    4,&DMB     z*z + c
+         LD    6,&DMB+8
+         ADR   0,4
+         ADR   2,6
+         MEND

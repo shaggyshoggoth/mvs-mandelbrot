@@ -1,0 +1,35 @@
+         MACRO
+&NAME    MANDEL &DMM
+.* Determine if a point is in the mandelbrot set
+.*
+.* input:
+.* c[real] in register 0
+.* c[imag] in register 2
+.* maxiter in register 4
+.*
+.* output:
+.* 
+.*
+         S     4,&DMM+40  Store maximum iterations
+         STD   0,&DMM
+         STD   2,&DMM+8
+ITERB    LD    0,&DMM+16  Setup input and call one iteration
+         LD    2,&DMM+24
+         LD    4,&DMM
+         LD    6,&DMM+8
+         MANONE &DMM+64
+         STD   0,&DMM+16  Store znext
+         STD   2,&DMM+24
+         CLMAG          Calculate magnitude
+         CD    0,&DMM+32  Check if bounded
+         BH    NOTIT
+         L     0,&DMM+40
+         S     0,&DMM+48
+         BE    ISIT
+         ST    0,&DMM+40
+         B     ITERB
+ISIT     L     0,&DMM+48
+         B     EXIT
+NOTIT    L     0,&DMM+56
+EXIT     C     0,=D'0'
+         MEND

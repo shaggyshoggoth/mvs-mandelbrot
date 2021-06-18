@@ -1,0 +1,17 @@
+         MACRO
+&NAME    CLMAG &STASH
+* Calculate square of magnitude of complex number
+*
+* &STASH  : memory region capable of storing two doubles
+* 0 : real part
+* 2 : complex part
+*
+* Result is in register 0
+*
+* Registers used 0,2,4
+         LDR 0,4
+         MDR 0,4
+         LDR 2,4
+         MDR 2,4
+         ADR 0,2
+         MEND

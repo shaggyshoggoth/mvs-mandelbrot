@@ -1,0 +1,32 @@
+         MACRO
+&NAME    CRDINIT &BUF
+.* Initializes 1D coordinate mapping
+.*
+.* Input
+.* &BUF - 4 long float sized buffer with the
+.*        following in order:
+.*        x0 - input space coordinate 0
+.*        x1 - input space coordinate 1
+.*        y0 - output space coordinate 0
+.*        y1 - output space coordinate 1
+.*
+.* Output
+.* &BUF - initialized for input to CRDTRAN
+.*
+.* Registers
+.* 0,2,4,6 (long)
+.*
+         WTO   'CRDINIT'
+         LD    0,&BUF+24   y1-y0
+         SD    0,&BUF+16
+         LD    2,&BUF+8    x1-x0
+         SD    2,&BUF
+         DDR   0,2          m
+         WTO   'Calced m'
+         STD   0,&BUF+8
+         LD    2,&BUF
+         MDR   0,2          m*x0
+         SD    0,&BUF+16          b
+         STD   0,&BUF
+         WTO   'Calced b'
+         MEND
