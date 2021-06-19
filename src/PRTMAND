@@ -9,21 +9,17 @@ PRTMAND  START
          ST    2,8(,13)
          ST    13,SAVEAREA+4
          LR    13,2
-         WTO   'Start prtmand'
          OPEN  (PRINTER,(OUTPUT))
-         WTO   'X Init'
-         CRDINIT XTRAN      Initialize coordinate translation
-         WTO   'Y Init'
+         CRDINIT XTRAN             Initialize coordinate translation
          CRDINIT YTRAN
-         WTO   'Prtmand After Open'
-XLOOP    LD    0,YCRNT      Coordinate translate
+XLOOP    LD    0,YCRNT             Coordinate translate
          CRDTRAN YTRAN
          LDR   4,0
          LD    0,XCRNT
          CRDTRAN XTRAN
-         LDR   2,4    Setup inputs
+         LDR   2,4                 Setup inputs
          L     4,MAXITER
-         MANDEL DMB            Calculate if in set
+         MANDEL DMB                Calculate if in set
          BE    NOPRINT
          PUTC  PRTBUF,HASH,XCHAR
          B     CONT
@@ -62,19 +58,11 @@ SPACE    DC    C'    '
 HASH     DC    C'####'
 DMB      DMAND
 SAVEAREA DS    18F
-PRTBUF   DS    132C
-.* Original
-.* PRINT    DCB   DSORG=PS,MACRF=PM,DDNAME=SYSLOUT,RECFM=FM,LRECL=121
-.* Another try
-.* PRINT    DCB   DDNAME=SYSLOUT,DSORG=PS,MACRF=PM,LRECL=133,RECFM=FA,    x
-.*               BLKSIZE=133,BUFNO=1
-.* Simple QSAM
+PRTBUF   DS    121C
 PRINTER  DCB   DSORG=PS,                                               X
                MACRF=(PM),                                             X
                DEVD=DA,                                                X
                DDNAME=SYSLOUT,                                         X
                RECFM=FM,                                               X
                LRECL=121
-.* Simple BSAM
-.* PRINT    DCB   DSORG=PS,MACRF=W,LRECL=133
          END   PRTMAND
