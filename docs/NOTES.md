@@ -68,4 +68,6 @@
     * SO13: Progress!!
     * Changed LRECL in DCB to 121
     * Ok! Now we're getting past OPEN!
+    * Determine what exactly this does and why.
+* Now failing on STC in PUTC
 
