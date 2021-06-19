@@ -2,17 +2,17 @@
 # Submit assembly and run job with
 # abend output enabled.
 
-cat /src/MANASM \
-    /src/MANONE \
-    /src/CLMAG \
-    /src/MANDEL \
-    /src/CRDINIT \
-    /src/CRDTRAN \
-    /src/PUTC \
-    /src/DMO \
-    /src/DMAND \
-    /src/PRTMAND \
-    /src/MANASE \
+cat src/MANASM \
+    src/MANONE \
+    src/CLMAG \
+    src/MANDEL \
+    src/CRDINIT \
+    src/CRDTRAN \
+    src/PUTC \
+    src/DMO \
+    src/DMAND \
+    src/PRTMAND \
+    src/MANASE \
     > job
 
 echo "/*" >> job
