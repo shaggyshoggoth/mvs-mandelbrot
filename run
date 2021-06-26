@@ -7,7 +7,6 @@ cat src/MANJOB \
     src/MANDEL \
     src/CRDINIT \
     src/CRDTRAN \
-    src/PUTC \
     src/DMO \
     src/DMAND \
     src/PRTMAND \

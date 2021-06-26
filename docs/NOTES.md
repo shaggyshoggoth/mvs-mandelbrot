@@ -70,4 +70,8 @@
     * Ok! Now we're getting past OPEN!
     * Determine what exactly this does and why.
 * Now failing on STC in PUTC
-
+* Moved top of code around (got rid of USING PRTMAND,15 - changing to just USING for register 12)
+* After poking around for a while with compilation errors around STC, inlined the macro. Seems
+  the macro syntax I'm using is incorrect. It's just a three-instruction thing so I'll ignore it.
+* Now, getting S0CC which is an exponent overflow exception. Cool, at least something mathy is
+  hapenning.
