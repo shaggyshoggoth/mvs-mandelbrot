@@ -7,8 +7,9 @@
          DC    D'0.0'  ZREAL 16
          DC    D'0.0'  ZIMAG 24
          DC    D'4.0'  BOUND 32
-         DS    1PL4    ITER  40
-         DC    PL4'1'  ONE   48
-         DC    PL4'0'  ZERO  56
+         DS    F       ITER  40
+         DC    F'1'    ONE   44
+         DC    F'0'    ZERO  48
+.* DMO: STASH at 56 (DS 2D realigns), TWO at 72
          DMO
          MEND
