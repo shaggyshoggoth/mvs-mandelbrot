@@ -27,6 +27,7 @@
          STD   0,&BUF+8
          LD    2,&BUF
          MDR   0,2         m*x0
-         SD    0,&BUF+16   b
+         LCDR  0,0         -m*x0
+         AD    0,&BUF+16   b = y0 - m*x0
          STD   0,&BUF
          MEND

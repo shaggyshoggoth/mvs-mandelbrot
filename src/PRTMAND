@@ -22,15 +22,16 @@ XLOOP    LD    0,YCRNT             Coordinate translate
          BE    NOPRINT
          IC    1,HASH              Inline PUTC macro
          L     2,XCHAR
-         STC   1,PRTBUF(2)
+         STC   1,PRTBUF+1(2)       Byte 0 is carriage control
          B     CONT
 NOPRINT  IC    1,SPACE             Inline PUTC macro
          L     2,XCHAR
-         STC   1,PRTBUF(2)
+         STC   1,PRTBUF+1(2)
 CONT     L     0,XCHAR
          A     0,ONE
          ST    0,XCHAR
-         BL    YNEXT
+         C     0,=F'120'           End of row?
+         BNL   YNEXT
          LD    0,XCRNT
          AD    0,ONED
          STD   0,XCRNT
@@ -43,9 +44,10 @@ YNEXT    PUT   PRINTER,PRTBUF
          LD    0,YCRNT
          AD    0,ONED
          STD   0,YCRNT
-         BL    DONE
-         B     XLOOP
+         CD    0,=D'90'            Last row?
+         BL    XLOOP
 DONE     CLOSE (PRINTER)
+         L     13,SAVEAREA+4       Restore caller's save area
          RETURN (14,12),RC=0
 XTRAN    DC    D'0',D'120',D'-2',D'2'
 YTRAN    DC    D'0',D'90',D'-2',D'2'
@@ -61,7 +63,7 @@ SPACE    DC    C'    '
 HASH     DC    C'####'
 DMB      DMAND
 SAVEAREA DS    18F
-PRTBUF   DS    121C
+PRTBUF   DC    X'09',120C' '      Machine CC: write, space 1
 PRINTER  DCB   DSORG=PS,                                               X
                MACRF=(PM),                                             X
                DEVD=DA,                                                X

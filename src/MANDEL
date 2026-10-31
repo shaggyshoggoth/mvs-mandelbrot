@@ -13,6 +13,9 @@
          ST    4,&DMM+40  Store maximum iterations
          STD   0,&DMM
          STD   2,&DMM+8
+         SDR   0,0        Reset z to 0 for this point
+         STD   0,&DMM+16
+         STD   0,&DMM+24
 ITERB    LD    0,&DMM+16  Setup input and call one iteration
          LD    2,&DMM+24
          LD    4,&DMM

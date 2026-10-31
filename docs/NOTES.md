@@ -77,3 +77,7 @@
   hapenning.
 * `S` and `ST` were confused in `MANDEL`. The intended operation was to store. See `GA22-7000`
 * Changed `PL4` to `F` for alignment issues - see `GC33-4010`
+* Changed `CRDINIT` logic to compute `y0 -m*x0`
+* Changed `MANDEL` to reset `z` to `0` after each point.
+* Changed `MANONE` because it was negating the imaginary part.
+* Changed `PRTMAND` because the termination condition never occurred.

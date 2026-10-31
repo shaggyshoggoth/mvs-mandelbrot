@@ -18,7 +18,7 @@
          STD   4,&DMB     Store C
          STD   6,&DMB+8
          LDR   4,0          Copy z
-         LCDR  6,2
+         LDR   6,2
          MDR   0,4          Real*Real
          MDR   2,6          Imag*Imag
          SDR   0,2          Real part zn
