@@ -75,3 +75,5 @@
   the macro syntax I'm using is incorrect. It's just a three-instruction thing so I'll ignore it.
 * Now, getting S0CC which is an exponent overflow exception. Cool, at least something mathy is
   hapenning.
+* `S` and `ST` were confused in `MANDEL`. The intended operation was to store. See `GA22-7000`
+* Changed `PL4` to `F` for alignment issues - see `GC33-4010`
