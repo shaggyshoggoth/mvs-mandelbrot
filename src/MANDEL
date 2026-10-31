@@ -10,7 +10,7 @@
 .* output:
 .* 
 .*
-         S     4,&DMM+40  Store maximum iterations
+         ST    4,&DMM+40  Store maximum iterations
          STD   0,&DMM
          STD   2,&DMM+8
 ITERB    LD    0,&DMM+16  Setup input and call one iteration
