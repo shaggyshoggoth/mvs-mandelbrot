@@ -81,3 +81,4 @@
 * Changed `MANDEL` to reset `z` to `0` after each point.
 * Changed `MANONE` because it was negating the imaginary part.
 * Changed `PRTMAND` because the termination condition never occurred.
+* Changed plot bounds to -2.1..0.6 x -1.125..1.125 on a 120x61 grid to fill the page better.

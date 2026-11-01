@@ -44,13 +44,13 @@ YNEXT    PUT   PRINTER,PRTBUF
          LD    0,YCRNT
          AD    0,ONED
          STD   0,YCRNT
-         CD    0,=D'90'            Last row?
+         CD    0,=D'61'            Last row?
          BL    XLOOP
 DONE     CLOSE (PRINTER)
          L     13,SAVEAREA+4       Restore caller's save area
          RETURN (14,12),RC=0
-XTRAN    DC    D'0',D'120',D'-2',D'2'
-YTRAN    DC    D'0',D'90',D'-2',D'2'
+XTRAN    DC    D'0',D'120',D'-2.1',D'0.6'
+YTRAN    DC    D'0',D'60',D'-1.125',D'1.125'
 XCRNT    DC    D'0.0'
 YCRNT    DC    D'0.0'
 ONED     DC    D'1.0'
