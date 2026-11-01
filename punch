@@ -1,0 +1,23 @@
+#!/bin/sh
+# Submit a job that punches two decks to SYSOUT=B (card punch 000D):
+# first the complete source job deck (what ./run submits), then the
+# assembled object deck for PRTMAND.
+
+SRC="src/MANONE \
+    src/CLMAG \
+    src/MANDEL \
+    src/CRDINIT \
+    src/CRDTRAN \
+    src/DMO \
+    src/DMAND \
+    src/PRTMAND"
+
+# Source job deck, same as ./run builds
+cat src/MANJOB $SRC > deck
+echo "/*" >> deck
+echo "//" >> deck
+
+cat src/MANPCH deck src/MANPCA $SRC > job
+echo "/*" >> job
+echo -n "//" >> job
+nc -w1 localhost 3505 < job
