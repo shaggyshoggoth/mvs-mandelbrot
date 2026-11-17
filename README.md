@@ -2,8 +2,15 @@
 
 ## Introduction
 
-This codebase is aimed at printing a representation of the Mandelbrot set in MVS 3.8j implemented in assembly. There
-is an [output run](docs/mandelbrot-output.pdf) that shows the results.
+This codebase is aimed at printing a representation of the Mandelbrot set in MVS 3.8j implemented in assembly. This is
+what it prints on the 1403:
+
+![The Mandelbrot set as printed by the job](docs/mandelbrot.png)
+
+There is a [one-page PDF](docs/mandelbrot-image.pdf) of just the image, and full printouts of an
+[assemble-and-go run](docs/mandelbrot-output.pdf) and a [run from the punched object deck](docs/mandelbrot-object-output.pdf),
+including the JES2 job log and assembler listing. The image is on the last pages of those PDFs; GitHub's viewer only
+previews the first few pages, so download them to see it.
 
 ## Running
 
