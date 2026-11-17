@@ -1,0 +1,4 @@
+@@
+//SYSLOUT  DD   SYSOUT=*
+//SYSUDUMP DD   SYSOUT=*
+//

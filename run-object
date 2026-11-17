@@ -1,0 +1,20 @@
+#!/bin/sh
+# Run the punched object deck (docs/cards/object.ebc) without assembling.
+# Object cards are binary, so the job goes to the card reader as an
+# EBCDIC file instead of over the ASCII socket, then the socket reader
+# is restored.
+
+HERC="http://localhost:8038/cgi-bin/tasks/syslog"
+
+# JCL cards padded to 80 columns and converted to EBCDIC
+ebcdic() {
+    python3 -c "import sys; sys.stdout.buffer.write(b''.join(l.rstrip('\n').ljust(80).encode('cp037') for l in open(sys.argv[1])))" "$1"
+}
+
+ebcdic src/MANOBJ > objjob
+cat docs/cards/object.ebc >> objjob
+ebcdic src/MANOBE >> objjob
+
+curl -s -G "$HERC" --data-urlencode "command=devinit 00C $PWD/objjob ebcdic eof" > /dev/null
+sleep 5
+curl -s -G "$HERC" --data-urlencode "command=devinit 00C 3505 sockdev ascii trunc eof" > /dev/null

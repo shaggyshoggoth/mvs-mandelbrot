@@ -29,6 +29,9 @@
 * **punch** Submits the punch job over network punch reader. Generates punch card output for the source and assembled programs.
 * **MANPCH** First part of punch job. Copies the inlined source job deck (MANJOB plus the program) to the card punch.
 * **MANPCA** Last part of punch job. Assembles the program, punches the object deck.
+* **run-object** Runs the punched object deck without assembling. Feeds the JCL and `docs/cards/object.ebc` to the card reader as an EBCDIC file, then restores the network reader.
+* **MANOBJ** First part of object deck job JCL. Calls the loader, with the object deck inlined after it.
+* **MANOBE** Last part of object deck job JCL.
 * **tools/cards.py** Renders a punched EBCDIC deck as card images.
 * **docs/cards/** Output of the above steps.
 
