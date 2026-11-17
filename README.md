@@ -2,7 +2,19 @@
 
 ## Introduction
 
+This codebase is aimed at printing a representation of the Mandelbrot set in MVS 3.8j implemented in assembly. There
+is an [output run](docs/mandelbrot-output.pdf) that shows the results.
+
 ## Running
+
+You'll need an install of MVS, probably through the [Hercules](https://www.hercules-390.eu/) emulator. I did most of my
+development through Juergen Winkelmann's [TK4-](https://wotho.pebble-beach.ch/tk4-/) system. The current version I am running
+via Rob Prins' [TK5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) system.
+
+I should also note that Jay Moseley's [website](https://www.jaymoseley.com/hercules/) has also been very helpful in navigating
+the entire system and its environment.
+
+Once you have a machine up and running. The `/run` command should be able to post a remote job over the punch reader.
 
 ## Quick File List
 
